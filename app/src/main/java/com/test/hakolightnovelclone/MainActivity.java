@@ -3,12 +3,16 @@ package com.test.hakolightnovelclone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.GridView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     GridView gvDanhSachLn;
+    EditText etSearch;
     LightnovelAdapter adapter;
     ArrayList<Lightnovel> lightnovels;
 
@@ -24,6 +28,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void SetEvent() {
         gvDanhSachLn.setAdapter(adapter);
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String string = etSearch.getText().toString();
+                adapter.SortLn(string);
+            }
+        });
     }
 
     private void Init() {
@@ -46,5 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void SetControl() {
         gvDanhSachLn = findViewById(R.id.gvDanhSachLn);
+        etSearch = findViewById(R.id.etSearch);
     }
 }

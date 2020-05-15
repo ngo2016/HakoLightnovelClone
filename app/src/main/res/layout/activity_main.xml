@@ -14,7 +14,7 @@
         android:gravity="center">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/etSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="80dp"
@@ -22,10 +22,12 @@
             android:layout_marginRight="80dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/bacground_edit"
-            android:hint=" Nhập tên truyện cần tìm"
+            android:gravity="center"
+            android:hint="Nhập tên truyện cần tìm"
+            android:singleLine="false"
             android:textColor="#fff"
             android:textColorHint="#B3ADAD"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <GridView
