@@ -1,6 +1,8 @@
-package com.test.hakolightnovelclone;
+package com.test.hakolightnovelclone.object;
 
-public class Lightnovel {
+import java.io.Serializable;
+
+public class Lightnovel implements Serializable {
     String tenLn, imgLink;
 
     public Lightnovel() {

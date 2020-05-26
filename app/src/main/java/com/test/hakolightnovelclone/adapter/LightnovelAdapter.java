@@ -1,4 +1,4 @@
-package com.test.hakolightnovelclone;
+package com.test.hakolightnovelclone.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
+import com.test.hakolightnovelclone.R;
+import com.test.hakolightnovelclone.object.Lightnovel;
 
 import java.util.ArrayList;
 import java.util.List;
