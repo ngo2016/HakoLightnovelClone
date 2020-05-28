@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Lightnovel implements Serializable {
     String tenLn, imgLink;
+    int id;
 
     public Lightnovel() {
     }
@@ -27,5 +28,13 @@ public class Lightnovel implements Serializable {
 
     public void setImgLink(String imgLink) {
         this.imgLink = imgLink;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

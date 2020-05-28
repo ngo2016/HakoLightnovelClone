@@ -1,7 +1,5 @@
 package com.test.hakolightnovelclone;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,8 +9,10 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.test.hakolightnovelclone.adapter.LightnovelAdapter;
-import com.test.hakolightnovelclone.R;
+import com.test.hakolightnovelclone.db.DBAccess;
 import com.test.hakolightnovelclone.object.Lightnovel;
 
 import java.util.ArrayList;
@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     LightnovelAdapter adapter;
     ArrayList<Lightnovel> lightnovels;
 
+    //    private DBHelper mDBHelper;
+//    private SQLiteDatabase mDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,13 +70,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Init() {
-        lightnovels = new ArrayList<>();
-        lightnovels.add(new Lightnovel("Overlord", "https://c1.hako.re/lightnovel/covers/s253-2e5b9953-dbdb-41b1-8a98-cf27c12a11b4-m.jpg"));
-        lightnovels.add(new Lightnovel("Kono Subarashii Sekai Ni Shukufuku o!", "https://c1.hako.re/lightnovel/covers/s6111-b554319a-2dff-4236-9e60-06f40cff50a8-m.jpg"));
-        lightnovels.add(new Lightnovel("Mahouka Koukou no Rettousei", "https://c1.hako.re/lightnovel/covers/s2891-33c9e9e9-14a4-4690-80af-942edc968487-m.jpg"));
-        lightnovels.add(new Lightnovel("Rokujouma no Shinryakusha!?", "https://c1.hako.re/lightnovel/covers/s247-f7ebeb5a-203a-45bf-9050-a4bbc0486ae7-m.jpg"));
+//        mDBHelper = new DBHelper(this);
+//
+//        try {
+//            mDBHelper.updateDataBase();
+//        } catch (IOException mIOException) {
+//            throw new Error("UnableToUpdateDatabase");
+//        }
+//
+//        try {
+//            mDb = mDBHelper.getWritableDatabase();
+//        } catch (SQLException mSQLException) {
+//            throw mSQLException;
+//        }
+//
+//        mDBHelper.openDataBase();
+//        Cursor cursor = mDBHelper.layTatCaDuLieu();
+//
+//        if (cursor != null) {
+//            lightnovels.clear();
+//            while (cursor.moveToNext()) {
+//                Lightnovel lightnovel = new Lightnovel();
+//                lightnovel.setId(cursor.getInt(0));
+//                lightnovel.setTenLn(cursor.getString(1));
+//                lightnovel.setImgLink(cursor.getString(2));
+//                lightnovels.add(lightnovel);
+//            }
+//
+//            adapter = new LightnovelAdapter(this, 0, lightnovels);
+//            adapter.notifyDataSetChanged();
+//        }
+//
+//        mDBHelper.close();
 
+        DBAccess dbAccess = DBAccess.getInstance(getApplicationContext());
+        dbAccess.open();
+        lightnovels = dbAccess.getLNs();
         adapter = new LightnovelAdapter(this, 0, lightnovels);
+        adapter.notifyDataSetChanged();
     }
 
     private void SetControl() {
