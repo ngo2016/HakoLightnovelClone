@@ -3,7 +3,7 @@ package com.test.hakolightnovelclone.object;
 import java.io.Serializable;
 
 public class Lightnovel implements Serializable {
-    String tenLn, imgLink;
+    String id, tenLn, imgLink;
 
     public Lightnovel() {
     }
@@ -27,5 +27,13 @@ public class Lightnovel implements Serializable {
 
     public void setImgLink(String imgLink) {
         this.imgLink = imgLink;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
