@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
+import com.test.hakolightnovelclone.object.Chapter;
 import com.test.hakolightnovelclone.object.Lightnovel;
 
 public class LightnovelDB {
@@ -33,15 +34,36 @@ public class LightnovelDB {
         return cursor;
     }
 
+    public Cursor getChapters() {
+        // Biến cot là khai báo danh sách các cột cần lấy.
+        String[] cot = {DBHelper.COT_ID,
+                DBHelper.TEN_CHAPTER,
+                DBHelper.TEN_LN,
+                DBHelper.NOI_DUNG};
+        Cursor cursor;
+        cursor = database.query(DBHelper.
+                        LISTCHAPTER, cot, null, null, null, null,
+                DBHelper.COT_ID + " ASC");
+        return cursor;
+    }
+
     public void close() {
         dbHelper.close();
     }
 
-    public static long them(Lightnovel lightnovel) {
+    public long addLn(Lightnovel lightnovel) {
         ContentValues values = new ContentValues();
         values.put(DBHelper.TEN_LN, lightnovel.getTenLn());
         values.put(DBHelper.IMG_LINK, lightnovel.getImgLink());
         return database.insert(DBHelper.LIGHTNOVEL, null, values);
+    }
+
+    public long addChapter(Chapter chapter) {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.TEN_LN, chapter.getTenLn());
+        values.put(DBHelper.TEN_CHAPTER, chapter.getChapterName());
+        values.put(DBHelper.NOI_DUNG, chapter.getNoiDung());
+        return database.insert(DBHelper.LISTCHAPTER, null, values);
     }
 //
 //    public static long xoa(PhieuPhanCong phieuPhanCong) {

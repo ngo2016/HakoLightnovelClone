@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.test.hakolightnovelclone.adapter.LightnovelAdapter;
 import com.test.hakolightnovelclone.db.DBHelper;
 import com.test.hakolightnovelclone.db.LightnovelDB;
+import com.test.hakolightnovelclone.object.Chapter;
 import com.test.hakolightnovelclone.object.Lightnovel;
 
 import java.util.ArrayList;
@@ -74,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void Init() {
         LightnovelDB lightnovelDB = new LightnovelDB(this);
-
 //        Lightnovel ln1 = new Lightnovel("Overlord", "https://c1.hako.re/lightnovel/covers/s253-2e5b9953-dbdb-41b1-8a98-cf27c12a11b4-m.jpg");
 //        Lightnovel ln2 = new Lightnovel("Kono Subarashii Sekai Ni Shukufuku o!", "https://c1.hako.re/lightnovel/covers/s6111-b554319a-2dff-4236-9e60-06f40cff50a8-m.jpg");
 //        Lightnovel ln3 = new Lightnovel("Mahouka Koukou no Rettousei", "https://c1.hako.re/lightnovel/covers/s2891-33c9e9e9-14a4-4690-80af-942edc968487-m.jpg");
@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
 //        lightnovelDB.them(ln3);
 //        lightnovelDB.them(ln4);
 
+        Chapter ch1 = new Chapter("Vol 1 Mở đầu", "Mahouka Koukou no Rettousei", "Vol 1 Mở đầu.html");
+        lightnovelDB.addChapter(ch1);
 
         Cursor cursor = lightnovelDB.getLns();
         if (cursor != null) {
