@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 
+import com.test.hakolightnovelclone.object.Lightnovel;
+
 public class LightnovelDB {
     private static SQLiteDatabase database;
     private DBHelper dbHelper;
@@ -19,7 +21,7 @@ public class LightnovelDB {
         }
     }
 
-    public static Cursor layTatCaDuLieu() {
+    public Cursor getLns() {
         // Biến cot là khai báo danh sách các cột cần lấy.
         String[] cot = {DBHelper.COT_ID,
                 DBHelper.TEN_LN,
@@ -35,10 +37,10 @@ public class LightnovelDB {
         dbHelper.close();
     }
 
-    public static long them(String name, String img) {
+    public static long them(Lightnovel lightnovel) {
         ContentValues values = new ContentValues();
-        values.put(DBHelper.TEN_LN, name);
-        values.put(DBHelper.IMG_LINK, img);
+        values.put(DBHelper.TEN_LN, lightnovel.getTenLn());
+        values.put(DBHelper.IMG_LINK, lightnovel.getImgLink());
         return database.insert(DBHelper.LIGHTNOVEL, null, values);
     }
 //

@@ -40,11 +40,6 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TAO_BANG_LIGHTNOVEL);
-//        db.execSQL("INSERT INTO Lightnovel VALUES('Overlord','https://c1.hako.re/lightnovel/covers/s253-2e5b9953-dbdb-41b1-8a98-cf27c12a11b4-m.jpg');");
-//        db.execSQL("INSERT INTO Lightnovel VALUES('Kono Subarashii Sekai Ni Shukufuku o!','https://c1.hako.re/lightnovel/covers/s6111-b554319a-2dff-4236-9e60-06f40cff50a8-m.jpg');");
-//        db.execSQL("INSERT INTO Lightnovel VALUES('Mahouka Koukou no Rettousei','https://c1.hako.re/lightnovel/covers/s2891-33c9e9e9-14a4-4690-80af-942edc968487-m.jpg');");
-//        db.execSQL("INSERT INTO Lightnovel VALUES('Rokujouma no Shinryakusha!?','https://c1.hako.re/lightnovel/covers/s247-f7ebeb5a-203a-45bf-9050-a4bbc0486ae7-m.jpg');");
-
         db.execSQL(TAO_BANG_LISTCHAPTER);
     }
 

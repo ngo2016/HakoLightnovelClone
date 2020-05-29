@@ -1,6 +1,5 @@
 package com.test.hakolightnovelclone;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etSearch;
     LightnovelAdapter adapter;
     ArrayList<Lightnovel> lightnovels = new ArrayList<Lightnovel>();
-    private DBHelper mDBHelper;
+    private DBHelper mDBHelper = new DBHelper(this);
     private SQLiteDatabase database;
 
     @Override
@@ -74,12 +73,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Init() {
-        LightnovelDB.them("Overlord", "https://c1.hako.re/lightnovel/covers/s253-2e5b9953-dbdb-41b1-8a98-cf27c12a11b4-m.jpg");
-        LightnovelDB.them("Kono Subarashii Sekai Ni Shukufuku o!", "https://c1.hako.re/lightnovel/covers/s6111-b554319a-2dff-4236-9e60-06f40cff50a8-m.jpg");
-        LightnovelDB.them("Mahouka Koukou no Rettousei", "https://c1.hako.re/lightnovel/covers/s2891-33c9e9e9-14a4-4690-80af-942edc968487-m.jpg");
-        LightnovelDB.them("Rokujouma no Shinryakusha!?", "https://c1.hako.re/lightnovel/covers/s247-f7ebeb5a-203a-45bf-9050-a4bbc0486ae7-m.jpg");
+        LightnovelDB lightnovelDB = new LightnovelDB(this);
 
-        Cursor cursor = LightnovelDB.layTatCaDuLieu();
+//        Lightnovel ln1 = new Lightnovel("Overlord", "https://c1.hako.re/lightnovel/covers/s253-2e5b9953-dbdb-41b1-8a98-cf27c12a11b4-m.jpg");
+//        Lightnovel ln2 = new Lightnovel("Kono Subarashii Sekai Ni Shukufuku o!", "https://c1.hako.re/lightnovel/covers/s6111-b554319a-2dff-4236-9e60-06f40cff50a8-m.jpg");
+//        Lightnovel ln3 = new Lightnovel("Mahouka Koukou no Rettousei", "https://c1.hako.re/lightnovel/covers/s2891-33c9e9e9-14a4-4690-80af-942edc968487-m.jpg");
+//        Lightnovel ln4 = new Lightnovel("Rokujouma no Shinryakusha!?", "https://c1.hako.re/lightnovel/covers/s247-f7ebeb5a-203a-45bf-9050-a4bbc0486ae7-m.jpg");
+//        lightnovelDB.them(ln1);
+//        lightnovelDB.them(ln2);
+//        lightnovelDB.them(ln3);
+//        lightnovelDB.them(ln4);
+
+
+        Cursor cursor = lightnovelDB.getLns();
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 Lightnovel lightnovel = new Lightnovel();
