@@ -2,13 +2,17 @@ package com.test.hakolightnovelclone;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +22,7 @@ import com.test.hakolightnovelclone.object.Chapter;
 import com.test.hakolightnovelclone.object.Lightnovel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ChapterActivity extends AppCompatActivity {
     ImageView imgLn;
@@ -27,29 +32,36 @@ public class ChapterActivity extends AppCompatActivity {
     ArrayList<Chapter> chapters;
     ChapterAdapter chapterAdapter;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Init();
         SetControl();
         SetEvent();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void Init() {
         Bundle bundle = getIntent().getBundleExtra("data");
         lightnovel = (Lightnovel) bundle.getSerializable("lightnovel");
 
+        Objects.requireNonNull(getSupportActionBar()).setTitle(lightnovel.getTenLn());
+
         LightnovelDB lightnovelDB = new LightnovelDB(this);
         chapters = new ArrayList<>();
-        Cursor cursor = lightnovelDB.getChapters();
+        Cursor cursor = lightnovelDB.getChapters(lightnovel);
         if (cursor != null) {
             while (cursor.moveToNext()) {
                 Chapter chapter = new Chapter();
                 chapter.setId("" + cursor.getInt(0));
-                chapter.setTenLn(cursor.getString(1));
-                chapter.setChapterName(cursor.getString(2));
+                chapter.setTenLn(cursor.getString(2));
+                chapter.setChapterName(cursor.getString(1));
                 chapter.setNoiDung(cursor.getString(3));
                 chapters.add(chapter);
             }
@@ -67,7 +79,8 @@ public class ChapterActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ChapterActivity.this, DetailActivity.class);
-                intent.putExtra("title", position);
+                intent.putExtra("title", chapters.get(position).getChapterName());
+                intent.putExtra("path", lightnovel.getTenLn());
                 startActivity(intent);
             }
         });
@@ -77,5 +90,13 @@ public class ChapterActivity extends AppCompatActivity {
         imgLn = findViewById(R.id.imgLn);
         tvTenLn = findViewById(R.id.tvTenLn);
         lvChapters = findViewById(R.id.lvChapters);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

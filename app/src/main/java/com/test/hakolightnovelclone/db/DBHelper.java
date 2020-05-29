@@ -20,13 +20,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String NOI_DUNG = "noiDung";
 
     private static final String TAO_BANG_LIGHTNOVEL = ""
-            + "CREATE TABLE " + LIGHTNOVEL + " ( "
+            + "CREATE TABLE IF NOT EXISTS " + LIGHTNOVEL + " ( "
             + COT_ID + " integer primary key autoincrement ,"
             + TEN_LN + " text not null, "
             + IMG_LINK + " text not null );";
 
     private static final String TAO_BANG_LISTCHAPTER = ""
-            + "CREATE TABLE " + LISTCHAPTER + " ( "
+            + "CREATE TABLE IF NOT EXISTS " + LISTCHAPTER + " ( "
             + COT_ID + " integer primary key autoincrement ,"
             + TEN_LN + " text not null, "
             + TEN_CHAPTER + " text not null, "

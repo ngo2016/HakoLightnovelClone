@@ -32,13 +32,14 @@ public class DetailActivity extends AppCompatActivity {
         extra = getIntent().getExtras();
         if (extra != null) {
             String data = extra.getString("title");
-            String url = "file:///android_asset/" + data + ".html";
+            String path = extra.getString("path").replaceAll("[-+.^:,?!]","");
+            String url = "file:///android_asset/" + path + "/" + data + ".html";
             webView.loadUrl(url);
             WebSettings webSettings = webView.getSettings();
             webSettings.setBuiltInZoomControls(true);
             webSettings.setDisplayZoomControls(false);
 
-            Objects.requireNonNull(getSupportActionBar()).setTitle(data.replace("_", " "));
+            Objects.requireNonNull(getSupportActionBar()).setTitle(data);
         }
     }
 

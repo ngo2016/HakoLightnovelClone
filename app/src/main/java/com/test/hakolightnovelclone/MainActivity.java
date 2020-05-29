@@ -79,13 +79,31 @@ public class MainActivity extends AppCompatActivity {
 //        Lightnovel ln2 = new Lightnovel("Kono Subarashii Sekai Ni Shukufuku o!", "https://c1.hako.re/lightnovel/covers/s6111-b554319a-2dff-4236-9e60-06f40cff50a8-m.jpg");
 //        Lightnovel ln3 = new Lightnovel("Mahouka Koukou no Rettousei", "https://c1.hako.re/lightnovel/covers/s2891-33c9e9e9-14a4-4690-80af-942edc968487-m.jpg");
 //        Lightnovel ln4 = new Lightnovel("Rokujouma no Shinryakusha!?", "https://c1.hako.re/lightnovel/covers/s247-f7ebeb5a-203a-45bf-9050-a4bbc0486ae7-m.jpg");
-//        lightnovelDB.them(ln1);
-//        lightnovelDB.them(ln2);
-//        lightnovelDB.them(ln3);
-//        lightnovelDB.them(ln4);
+//        lightnovelDB.addLn(ln1);
+//        lightnovelDB.addLn(ln2);
+//        lightnovelDB.addLn(ln3);
+//        lightnovelDB.addLn(ln4);
 
-        Chapter ch1 = new Chapter("Vol 1 Mở đầu", "Mahouka Koukou no Rettousei", "Vol 1 Mở đầu.html");
-        lightnovelDB.addChapter(ch1);
+//        Chapter ch9 = new Chapter("Vol 1 Mở đầu", "Kono Subarashii Sekai Ni Shukufuku o!", "Vol 1 Mở đầu.html");
+//        lightnovelDB.addChapter(ch9);
+//        Chapter ch2 = new Chapter("Vol 1 Chương 1", "Kono Subarashii Sekai Ni Shukufuku o!", "Vol 1 Chương 1.html");
+//        lightnovelDB.addChapter(ch2);
+//        Chapter ch3 = new Chapter("Vol 1 Chương 2", "Kono Subarashii Sekai Ni Shukufuku o!", "Vol 1 Chương 2.html");
+//        lightnovelDB.addChapter(ch3);
+//        Chapter ch4 = new Chapter("Vol 1 Chương 3", "Kono Subarashii Sekai Ni Shukufuku o!", "Vol 1 Chương 3.html");
+//        lightnovelDB.addChapter(ch4);
+//        Chapter ch5 = new Chapter("Vol 1 Chương 4", "Kono Subarashii Sekai Ni Shukufuku o!", "Vol 1 Chương 4.html");
+//        lightnovelDB.addChapter(ch5);
+//        Chapter ch1 = new Chapter("Vol 1 Chương kết", "Kono Subarashii Sekai Ni Shukufuku o!", "Vol 1 Chương kết.html");
+//        lightnovelDB.addChapter(ch1);
+//        Chapter ch10 = new Chapter("Vol 1 Lời bạt", "Kono Subarashii Sekai Ni Shukufuku o!", "Vol 1 Lời bạt.html");
+//        lightnovelDB.addChapter(ch10);
+//
+//        lightnovelDB.close();
+
+//        for (int i = 19; i <= 26; i++) {
+//            lightnovelDB.delchapter(i);
+//        }
 
         Cursor cursor = lightnovelDB.getLns();
         if (cursor != null) {
