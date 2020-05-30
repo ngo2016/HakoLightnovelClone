@@ -16,6 +16,7 @@ import com.test.hakolightnovelclone.R;
 import com.test.hakolightnovelclone.object.Lightnovel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LightnovelAdapter extends ArrayAdapter<Lightnovel> {
@@ -35,11 +36,14 @@ public class LightnovelAdapter extends ArrayAdapter<Lightnovel> {
             Lightnovel lightnovel = lightnovels.get(i);
             String name = lightnovel.getTenLn().toUpperCase();
             if (name.contains(s)) {
-                lightnovels.set(i, lightnovels.get(k));
-                lightnovels.set(k, lightnovel);
+                Collections.swap(lightnovels, i, k);
                 k++;
             }
         }
+    }
+
+    public void refresh(ArrayList<Lightnovel> itemsw) {
+        this.lightnovels = itemsw;
         notifyDataSetChanged();
     }
 

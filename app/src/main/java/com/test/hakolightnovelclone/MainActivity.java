@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String string = etSearch.getText().toString();
                 adapter.SortLn(string);
+                adapter.refresh(lightnovels);
             }
         });
     }
