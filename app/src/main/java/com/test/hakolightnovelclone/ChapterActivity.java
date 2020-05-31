@@ -38,6 +38,7 @@ public class ChapterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter);
 
+        //Hiển thị nút back trên actionbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -48,11 +49,14 @@ public class ChapterActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void Init() {
+        //Nhận bundle từ mainactivity
         Bundle bundle = getIntent().getBundleExtra("data");
         lightnovel = (Lightnovel) bundle.getSerializable("lightnovel");
 
+        //Update lại title cho actionbar
         Objects.requireNonNull(getSupportActionBar()).setTitle(lightnovel.getTenLn());
 
+        //Lấy dữ liệu chapter list từ db
         LightnovelDB lightnovelDB = new LightnovelDB(this);
         chapters = new ArrayList<>();
         Cursor cursor = lightnovelDB.getChapters(lightnovel);
@@ -70,11 +74,13 @@ public class ChapterActivity extends AppCompatActivity {
     }
 
     private void SetEvent() {
+        //Lấy dữ liệu từ bundle để gán
         tvTenLn.setText(lightnovel.getTenLn());
         Glide.with(this).load(lightnovel.getImgLink()).into(imgLn);
 
         lvChapters.setAdapter(chapterAdapter);
 
+        //Khi ấn vào 1 chapter sẽ gửi title và path cho detail activity
         lvChapters.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -92,6 +98,7 @@ public class ChapterActivity extends AppCompatActivity {
         lvChapters = findViewById(R.id.lvChapters);
     }
 
+    //Function back trên actionbar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

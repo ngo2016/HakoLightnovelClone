@@ -39,9 +39,11 @@ public class MainActivity extends AppCompatActivity {
         SetEvent();
     }
 
+    //Hàm sự kiện
     private void SetEvent() {
         gvDanhSachLn.setAdapter(adapter);
 
+        //Khi click vào item trong grid item sẽ gửi 1 bundle sang cho activity chapter để nó nạp vào
         gvDanhSachLn.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Chức năng live
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String string = etSearch.getText().toString();
                 adapter.SortLn(string);
+                //Refresh lại để update position
                 adapter.refresh(lightnovels);
             }
         });
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 //            lightnovelDB.delchapter(i);
 //        }
 
+        //Đọc dữ liệu từ db đổ vào grid item
         Cursor cursor = lightnovelDB.getLns();
         if (cursor != null) {
             while (cursor.moveToNext()) {

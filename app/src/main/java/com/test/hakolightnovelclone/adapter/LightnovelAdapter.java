@@ -29,6 +29,7 @@ public class LightnovelAdapter extends ArrayAdapter<Lightnovel> {
         this.lightnovels = new ArrayList<>(objects);
     }
 
+    //Nếu phát hiện ra ln nào giống từ khóa thì nó sẽ tráo ln đó vs ln ở vị trí 0 trong griw
     public void SortLn(String s) {
         s = s.toUpperCase();
         int k = 0;
@@ -42,6 +43,7 @@ public class LightnovelAdapter extends ArrayAdapter<Lightnovel> {
         }
     }
 
+    //Sau khi tráo vị trí thì position ko đc update nên ta phải làm thủ công
     public void refresh(ArrayList<Lightnovel> itemsw) {
         this.lightnovels = itemsw;
         notifyDataSetChanged();

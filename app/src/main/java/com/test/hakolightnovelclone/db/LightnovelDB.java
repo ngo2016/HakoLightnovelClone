@@ -22,6 +22,7 @@ public class LightnovelDB {
         }
     }
 
+    //Lấy ln từ db
     public Cursor getLns() {
         // Biến cot là khai báo danh sách các cột cần lấy.
         String[] cot = {DBHelper.COT_ID,
@@ -34,6 +35,7 @@ public class LightnovelDB {
         return cursor;
     }
 
+    //Lấy chapter list từ db
     public Cursor getChapters(Lightnovel lightnovel) {
         // Biến cot là khai báo danh sách các cột cần lấy.
         String[] cot = {DBHelper.COT_ID,
@@ -58,13 +60,13 @@ public class LightnovelDB {
 //        return database.insert(DBHelper.LIGHTNOVEL, null, values);
 //    }
 
-    public long addChapter(Chapter chapter) {
-        ContentValues values = new ContentValues();
-        values.put(DBHelper.TEN_LN, chapter.getTenLn());
-        values.put(DBHelper.TEN_CHAPTER, chapter.getChapterName());
-        values.put(DBHelper.NOI_DUNG, chapter.getNoiDung());
-        return database.insert(DBHelper.LISTCHAPTER, null, values);
-    }
+//    public long addChapter(Chapter chapter) {
+//        ContentValues values = new ContentValues();
+//        values.put(DBHelper.TEN_LN, chapter.getTenLn());
+//        values.put(DBHelper.TEN_CHAPTER, chapter.getChapterName());
+//        values.put(DBHelper.NOI_DUNG, chapter.getNoiDung());
+//        return database.insert(DBHelper.LISTCHAPTER, null, values);
+//    }
 
     //    public long delLn(int id) {
 //        return database.delete(DBHelper
@@ -73,30 +75,10 @@ public class LightnovelDB {
 //                id + "'", null);
 //    }
 //
-    public long delchapter(int id) {
-        return database.delete(DBHelper
-                .LISTCHAPTER, DBHelper
-                .COT_ID + " = " + "'" +
-                id + "'", null);
-    }
-//
-//    public static long sua(PhieuPhanCong phieuPhanCong) {
-//        ContentValues values = new ContentValues();
-//        values.put(DBHelper.TEN_LN,
-//                phieuPhanCong.getSoPhieu());
-//        values.put(DBHelper.IMG_LINK,
-//                phieuPhanCong.getNgay());
-//        values.put(DBHelper.COT_XUATPHAT,
-//                phieuPhanCong.getXuatPhat());
-//        values.put(DBHelper.COT_TUYEN,
-//                phieuPhanCong.getTuyen());
-//        values.put(DBHelper.COT_TINH,
-//                phieuPhanCong.getTinh());
-//        values.put(DBHelper.COT_XE,
-//                phieuPhanCong.getXe());
-//        return database.update(DBHelper
-//                        .LIGHTNOVEL, values,
-//                DBHelper.TEN_LN + " = "
-//                        + phieuPhanCong.getSoPhieu(), null);
+//    public long delchapter(int id) {
+//        return database.delete(DBHelper
+//                .LISTCHAPTER, DBHelper
+//                .COT_ID + " = " + "'" +
+//                id + "'", null);
 //    }
 }

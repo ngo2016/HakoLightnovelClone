@@ -12,7 +12,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String LIGHTNOVEL = "Lightnovel";
     public static final String LISTCHAPTER = "ListChapter";
 
-    // Bảng gồm 3 cột _id, _ten và _lop.
+    // Bảng gồm các cột
     public static final String COT_ID = "id";
     public static final String TEN_LN = "tenLn";
     public static final String IMG_LINK = "imgLink";
