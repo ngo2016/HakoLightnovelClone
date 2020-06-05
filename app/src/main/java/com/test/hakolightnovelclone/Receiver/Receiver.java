@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import com.test.hakolightnovelclone.MainActivity;
@@ -18,13 +19,14 @@ import com.test.hakolightnovelclone.R;
 public class Receiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             SendNotificationAPI26(context);
-        }else {
+        } else {
             SendNotification(context);
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void SendNotificationAPI26(Context context) {
         String title = "Đến giờ đọc lightnovel rồi bạn ơi!!!";
         String message = "Mở app lên và đọc lightnovel ngay đi nào!!!";
@@ -37,7 +39,11 @@ public class Receiver extends BroadcastReceiver {
 
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
+        helper = new NotificationHelper(context);
 
+        builder=helper.getNotification(title, message, sound, pendingIntent, true);
+
+        helper.getManager().notify(1, builder.build());
     }
 
     private void SendNotification(Context context) {
@@ -57,7 +63,7 @@ public class Receiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setSound(sound);
 
-        NotificationManager notificationManager= (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(1, builder.build());
     }

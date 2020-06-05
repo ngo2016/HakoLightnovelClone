@@ -1,5 +1,8 @@
 package com.test.hakolightnovelclone;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +16,7 @@ import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.test.hakolightnovelclone.Receiver.Receiver;
 import com.test.hakolightnovelclone.adapter.LightnovelAdapter;
 import com.test.hakolightnovelclone.db.DBHelper;
 import com.test.hakolightnovelclone.db.LightnovelDB;
@@ -20,6 +24,7 @@ import com.test.hakolightnovelclone.object.Chapter;
 import com.test.hakolightnovelclone.object.Lightnovel;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     GridView gvDanhSachLn;
@@ -37,6 +42,23 @@ public class MainActivity extends AppCompatActivity {
         Init();
         SetControl();
         SetEvent();
+        RegisterAlarm();
+    }
+
+    private void RegisterAlarm() {
+        AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(MainActivity.this, Receiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 10);
+
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY,
+                pendingIntent);
     }
 
     //Hàm sự kiện
