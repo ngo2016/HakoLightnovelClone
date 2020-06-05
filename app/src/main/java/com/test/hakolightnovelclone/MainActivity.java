@@ -48,13 +48,14 @@ public class MainActivity extends AppCompatActivity {
     private void RegisterAlarm() {
         AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(MainActivity.this, Receiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        calendar.set(Calendar.HOUR_OF_DAY, 9);
-        calendar.set(Calendar.MINUTE, 10);
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.MINUTE, 38);
+        calendar.set(Calendar.MINUTE, 0);
 
         manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,
